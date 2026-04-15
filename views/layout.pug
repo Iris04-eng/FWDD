@@ -1,0 +1,69 @@
+doctype html
+html
+  head
+    title Escape the Outbreak
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/css/style.css")
+    link(rel="stylesheet" href="/css/lobby.css")
+    link(rel="stylesheet" href="/css/header.css")
+    link(rel="stylesheet" href="/css/joinUI.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Creepster&display=swap")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Creepster&family=Lilita+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap")
+    block styles
+    block head
+  body
+    if showHeader
+      include header
+
+    block content
+
+    audio#bgm(loop)
+      source(src="/images/bgm.mp3" type="audio/mpeg")
+      
+    script(src="/socket.io/socket.io.js")
+    script.
+      const bgm = document.getElementById("bgm");
+      function playBGM() {
+        if (!bgm) return;
+        bgm.volume = 0.3;
+        const savedTime = sessionStorage.getItem("bgmTime");
+        if (savedTime) {
+          bgm.currentTime = parseFloat(savedTime);
+        }
+        bgm.play().catch(() => {});
+        sessionStorage.setItem("bgm", "on");
+      }
+
+      function stopBGM() {
+        if (!bgm) return;
+        bgm.pause();
+        sessionStorage.setItem("bgm", "off");
+      }
+
+      if (bgm) {
+        bgm.addEventListener("timeupdate", () => {
+          sessionStorage.setItem("bgmTime", bgm.currentTime);
+        });
+      }
+
+      if (sessionStorage.getItem("bgm") === "on") {
+        playBGM();
+      }
+
+      document.addEventListener("click", () => {
+        playBGM();
+      }, { once: true });
+
+      const profile = document.querySelector('.profile-container');
+      if (profile) {
+        profile.addEventListener('click', function(e) {
+          e.stopPropagation();
+          this.classList.toggle('active');
+        });
+        document.addEventListener('click', function() {
+          profile.classList.remove('active');
+        });
+      }
+
+    block scripts

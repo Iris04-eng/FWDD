@@ -1,0 +1,11 @@
+extends layout
+block content
+  video.bg-video(autoplay muted loop)
+    source(src="/images/zombie_vid_bg.MP4" type="video/mp4")
+
+  .container
+    .title
+      h1.gameTitle Escape the Outbreak
+        p.subtitle An Educational Hybrid Board Game for Python Control Flow
+        .btn_container
+          a.startbtn(href="/lobby") Start

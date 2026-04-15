@@ -1,0 +1,45 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/waitingLobby.css")
+
+block content
+  .waiting-container
+    h1 Waiting for Players...
+
+    .join-code-box
+      .join-code-label Join Code
+      .join-code #{joinCode}
+
+    p Share this code or QR with other players
+
+    .qr-box
+      #qrcode
+
+    .player-list
+      h3 Players Joined:
+      ul#playerList
+        each player in players
+          li #{player.player_name}
+
+      .player-count#playerCount #{players.length} / 4 players joined
+
+    .button-area
+      if isHost
+        button.start-btn#startGameBtn Start Game Now
+
+    .countdown#countdownText
+
+block scripts
+  script.
+    window.GAME_ID = "!{game_id}";
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js")
+  script.
+    const joinCode = "!{joinCode}";
+    new QRCode(document.getElementById("qrcode"), {
+      text: window.location.origin + "/join?code=" + joinCode,
+      width: 150,
+      height: 150
+    });
+
+  script(src="/js/waitingLobby.js")

@@ -1,0 +1,57 @@
+extends layout
+
+block head
+  link(rel="stylesheet" href="/css/login_register.css")
+block content
+  .videoBg
+    video.bg-video(autoplay muted loop)
+      source(src="/images/zombie_vid_bg.MP4" type="video/mp4")
+
+  .login-container
+    h1 🧟 Login
+    
+    // Display error message if exists
+    if message
+      .message= message
+    
+    form(method="POST" action="/auth/login")
+      .form-group
+        label(for="username") Username
+        input#username(
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          required
+        )
+      
+      .form-group
+        label(for="password") Password
+        .password-wrapper
+          input#password(
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+          )
+          button#toggle-btn.toggle-password(type="button" onclick="togglePassword('password')") 
+            img#toggle-icon(src="/images/closedEye.png" alt="Toggle password visibility" style="width: 24px; height: 24px;")
+      
+      button.login-btn(type="submit") Login
+    
+    .register-link
+      p Don't have an account? 
+      a(href="/register") Create one here
+
+block scripts
+    script.
+      function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const icon = document.getElementById('toggle-icon');
+        if (field.type === 'password') {
+          field.type = 'text';
+          icon.src = '/images/openEye.png';
+        } else {
+          field.type = 'password';
+          icon.src = '/images/closedEye.png';
+        }
+      }

@@ -1,0 +1,26 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/gameRulesIntro.css")
+
+block content
+  #rotate-warning(style="display:none;")
+    p 🔄 Please rotate your device to landscape
+
+  .cutscene-container
+    video#introVideo(autoplay muted playsinline)
+      source(src="/images/introCutscene.mp4" type="video/mp4")
+  
+    button#skipBtn.skip-btn ⏭ Skip
+
+  .rules-container(style="display:none;")
+    .dialogue-box
+      #npc-name SYSTEM
+      #npc-dialogue
+      button#next-btn ▶ Continue
+
+  script.
+    const game_id = !{JSON.stringify(game_id)};
+
+block scripts
+  script(src="/js/gameRulesIntro.js")

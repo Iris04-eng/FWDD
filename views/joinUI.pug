@@ -1,0 +1,44 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/joinUI.css")
+
+block content
+
+  .join-container
+
+    h1 🧟 Join the Outbreak
+    p.subtitle Enter the survival zone... if you dare...
+    if error
+      .error-message= error
+    form(action="/join-game", method="POST")
+
+      label(for="player_name") Player's Name:
+      input(
+        type="text",
+        name="player_name",
+        id="player_name",
+        placeholder="e.g. ZombieSlayer99",
+        required
+      )
+      label(for="join_code") Join Code:
+      input(
+        type="text",
+        name="join_code",
+        id="join_code",
+        placeholder="e.g. ABC123",
+        required
+      )
+      button.join-btn Enter Game
+
+    p.or-text OR
+
+    .qr-section
+      button#scanBtn.scan-btn 📷 Scan QR Code
+      .qr-scanner#scannerBox(style="display:none;")
+        #reader
+        img#flipBtn.flip-icon(src="/images/flipCamera.png")
+
+block scripts
+  script(src="https://unpkg.com/html5-qrcode")
+  script(src="/js/joinUI.js" defer)

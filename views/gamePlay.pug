@@ -1,0 +1,187 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/gamePlay.css")
+
+block content
+  .game-container
+
+    // 🔝 STATUS BAR
+    .status-bar
+      .left-stats
+        .stat
+          | ❤️ HP:
+          span#hearts
+            span.heart ❤️
+            span.heart ❤️
+            span.heart ❤️
+            span.heart ❤️
+            span.heart ❤️
+
+        .stat ⭐ Points: #[span#points 0]
+        .stat 🧟 Infection: #[span#infection 0] turn
+
+      .right-icons
+        img#backpackBtn.backpack-icon(src="/images/backpack.png")
+
+    // 🎒 BACKPACK PANEL
+    .backpack-panel#backpackPanel(style="display:none;")
+      h3 Your Skills
+      <p id="activeSkillText"></p>
+      ul#skillList
+        li No skills yet
+
+    // 🎲 DICE
+    .dice-section
+      h2#turnText Waiting for your turn...
+
+      .container
+        .dice-wrapper
+          .dice
+            .face.front
+            .face.back
+            .face.top
+            .face.bottom
+            .face.right
+            .face.left
+        button.roll#rollDiceBtn(style="font-family: Lilita One;") Roll Dice
+
+      p#diceResult
+      p#positionText 📍 Position: 0
+
+    // 📷 SCANNER
+    .scanner-container
+      button#scanBtn.scan-btn(style="display:none;") 📷 Scan QR
+      #reader
+
+    // ❓ QUESTION
+    .question-panel(style="display:none;")
+      h3#questionText
+
+      .options
+        button.option#optA
+        button.option#optB
+        button.option#optC
+        button.option#optD
+
+      // ✅ SUBMIT BUTTON
+      button#submitBtn.submit-btn Submit Answer
+
+      // ✅ RESULT FEEDBACK
+      p#answerResult
+
+      // ✅ EXPLANATION
+      .result-section
+        .explanation-box#explanationBox
+        p#countdownText
+    
+    // 🛒 SKILL SHOP POPUP
+    #shopPopup.rules-popup(style="display:none;")
+      .rules-content
+        img#closeShop.close-icon(src="/images/close.png")
+
+        h2 🛒 Skill Shop
+
+        .skill-list
+          .skill-card#skill1
+          .skill-card#skill2
+
+        p#shopMessage
+
+    // 📜 RULES BUTTON
+    img#rulesBtn.rules-icon(src="/images/rules.png")
+
+    // 📜 RULES POPUP
+    .rules-popup#rulesPopup(style="display:none;")
+      .rules-content
+        img#closeRules.close-icon(src="/images/close.png")
+        h2 🎮 Game Rules
+
+        p 🎯 Objective:
+        p Reach the final tile before other players while staying alive. Earn points, use skills, and survive the outbreak!
+
+        br
+
+        p 🎲 Turn Flow:
+        p 1. Roll the dice to move forward.
+        p 2. Scan the QR code to receive a question.
+        p 3. Answer the question correctly to gain points.
+        p 4. End your turn after answering.
+
+        br
+
+        p ❓ Questions & Rewards:
+        p ✔ Easy → +30 points
+        p ✔ Moderate → +40 points + chance to get a skill
+        p ✔ Hard → +80 points (⏱ 60s time limit)
+        p ✔ Extreme → +100 points (⏱ 90s time limit)
+
+        br
+
+        p ❌ Wrong Answers:
+        p ✖ Moderate → -10 points
+        p ✖ Hard → -30 points & move back 2 tiles
+        p ✖ Extreme → lose 1 life & get infected
+
+        br
+
+        p 🧟 Infection System:
+        p If infected, wrong answers will cause additional life loss.
+        p Infection lasts for several turns unless cured.
+
+        br
+
+        p ❤️ Lives:
+        p You start with 5 lives.
+        p If lives reach 0 → Game Over.
+
+        br
+
+        p 🛒 Skill Shop:
+        p Every few turns, a shop appears.
+        p Use points to buy skills.
+        p Maximum 3 skills can be held at once.
+
+        br
+
+        p 🎒 Skills:
+        p ⚡ Sprint → Move +2 tiles after rolling
+        p 🧠 Erase → Remove one wrong answer
+        p 🛡 Immunity → No penalty for wrong answer (1 turn)
+        p 💉 Vaccine → Remove infection & restore health
+        p 🚫 Block → Skip next player’s turn
+
+        br
+
+        p ⏱ Timers:
+        p Hard questions → 60 seconds to answer
+        p Extreme questions → 90 seconds to answer
+        p If time runs out → counted as wrong
+
+        br
+
+        p 🏆 Winning:
+        p Reach the final tile first OR be the last player alive.
+
+        br
+
+        p ⚠️ Important:
+        p Each question can only be answered once.
+        p Skills are applied on your next turn.
+        p Plan your moves wisely!
+
+    // 🏆 RESULT POPUP
+    #winnerPopup.rules-popup(style="display:none;")
+      .rules-content
+        h2#winnerText
+        p#extraText
+        .exit-container
+          button#exitGameBtn Exit Game
+
+block scripts
+  script(src="https://unpkg.com/html5-qrcode")
+  script.
+    window.GAME_ID = !{JSON.stringify(game_id)};
+    window.MY_PLAYER_ID = !{JSON.stringify(player_id)};
+    window.CURRENT_TURN = !{JSON.stringify(current_turn_player_id)};
+  script(src="/js/gamePlay.js")

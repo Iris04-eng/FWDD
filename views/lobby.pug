@@ -1,0 +1,63 @@
+extends layout
+
+block styles
+  link(rel="stylesheet", href="/css/lobby.css")
+
+block content
+  .main-container
+    .lobby-container
+      h2 Lobby
+      .game-options
+        .game-card
+          h3 🎮 Start Game
+          p Create a new game and invite friends
+          if user
+            button#createGameBtn.game-btn Start Game
+          else
+            a(href="/login")
+              button.game-btn Start Game
+        .game-card
+          h3 👥 Join Game
+          p Join using a game code or QR
+          if user
+            a(href="/join")
+              button.game-btn Join Game
+          else
+            a(href="/login")
+              button.game-btn Join Game
+
+  .create-modal#modal(style="display:none;")
+    .modal-content
+      img.close-btn(src="/images/close.png", alt="close")
+      h2 Player's Name:
+      form(action="/create-game", method="POST")
+        input(
+          type="text",
+          name="player_name",
+          placeholder="e.g. ZombieSlayer99",
+          required
+        )
+        button.create-btn Start Game
+
+block scripts
+  script.
+    const modal = document.getElementById("modal");
+    const btn = document.getElementById("createGameBtn");
+    const closeBtn = document.querySelector(".close-btn");
+
+    btn.addEventListener("click", () => {
+      modal.style.display = "flex";
+      document.body.classList.add("blur-bg");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      document.body.classList.remove("blur-bg");
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.classList.remove("blur-bg");
+      }
+    });
