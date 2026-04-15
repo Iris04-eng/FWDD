@@ -1,0 +1,117 @@
+.navbar {
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 2px solid #ff0000;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+  position: relative; 
+  z-index: 100;
+}
+
+.navbar h1 {
+  color: #ff0000;
+  margin: 0;
+  font-family: 'Creepster';
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.navbar-items {
+  margin-left: auto;
+}
+
+.profile-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+.profile-icon:active {
+  transform: scale(0.95);
+  box-shadow: 3px 3px 8px rgba(255, 0, 0, 0.6);
+}
+
+.profile-container {
+  position: relative;
+}
+
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid #ff0000;
+  border-radius: 8px;
+  padding: 15px;
+  width: 150px;
+  text-align: center;
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.profile-container.active .profile-dropdown {
+  display: block;
+}
+
+.profile-dropdown p {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+.profile-dropdown a {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  background: #ff0000;
+  padding: 8px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.profile-dropdown a + a {
+  margin-top: 10px; 
+}
+
+.profile-dropdown a:hover {
+  background: #ff3333;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 15px 10px;
+  }
+
+  .navbar h1 {
+    margin: 0;
+    font-size: 25px; 
+    text-align: left;
+    width: 100%;   
+  }
+
+  .navbar-items {
+    position: absolute;
+    right: 15px;   
+    top: 50%;
+    transform: translateY(-50%);
+    width: auto;    
+    display: block; 
+  }
+}

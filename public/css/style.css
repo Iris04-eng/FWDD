@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'Ghastly Panic';
+  src: url('/fonts/Ghastly Panic.ttf') format('truetype');
+}
+
+body {
+  margin: 0;
+  padding: 0 20px;
+  height: 100%;
+  font-family: Lilita One;
+}
+
+.bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh; 
+  width: 100%;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.subtitle {
+  text-align: center;      
+  width: 100%;            
+  margin: 10px 0 20px 0;  
+  color: #9c0406;         
+  font-family: Creepster; 
+  font-size: 1.2rem;     
+  letter-spacing: 1px;    
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.card {
+  background: rgba(255,255,255,0.9);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.gameTitle {
+  font-family: 'Ghastly Panic';
+  font-size: clamp(85px, 12vw, 220px);
+  color: #9c0406;
+  text-shadow: 5px 10px 10px rgba(245, 245, 245, 0.89);
+  text-align: center;
+  margin: 50px;
+}
+
+.btn_container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.startbtn {
+  font-family: Creepster;
+  padding: 15px 40px;
+  font-size: 24px;
+  display: block;
+  background-color: #9c0406;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.startbtn:hover {
+  background-color: #7a0305;
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 10px rgba(153, 153, 153, 0.7);
+}
+
+.startbtn:active{
+  box-shadow: 10px 10px 10px rgba(153, 153, 153, 0.7);
+  transform: translateY(0px);
+}

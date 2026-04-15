@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.join-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  text-align: center;
+  color: white;
+}
+
+.join-container h1 {
+  font-family: 'Creepster', cursive;
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+}
+
+.join-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #ff0000;
+  border: none;
+  border-radius: 100px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Lilita One;
+}
+
+.join-btn:hover {
+  background: #ff3333;
+  box-shadow: 0 0 12px red;
+}
+
+.error-message {
+  color: #ff6666;
+  margin-bottom: 10px;
+}
+
+.or-text {
+  margin: 20px 0;
+  color: #ccc;
+}
+
+.scan-btn {
+  padding: 10px 20px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: Lilita One;
+}
+
+.scan-btn:hover {
+  background: #ff3333;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.qr-scanner {
+  margin-top: 20px;
+  position: relative;
+}
+
+#reader {
+  width: 300px;
+  margin: auto;
+}
+
+.flip-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  transition: 0.3s;
+  display: none;
+  z-index: 10;
+}
+
+.flip-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px red;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.scan-note {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+}
+
